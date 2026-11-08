@@ -1,17 +1,15 @@
-"use client"
-
 import * as React from "react"
 import Link from "next/link"
-import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "./ui/sheet"
 import Image from "next/image"
+import { DialogTrigger } from "./ui/dialog"
+import { Menu } from "lucide-react"
 
 export default function Navbar() {
   const navLinks = [
@@ -52,7 +50,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <Link
-              href="/login"
+              href="/signIn"
               className="text-sm font-medium text-[#8b5cf6] transition-colors hover:text-[#a78bfa]"
             >
               Sign In
@@ -63,14 +61,11 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <div className="flex md:hidden">
           <Sheet>
-            <SheetTrigger>
-              <Button variant="ghost">
-                <Menu />
-              </Button>
-            </SheetTrigger>
+            <DialogTrigger >
+              <Menu></Menu>
+            </DialogTrigger>
             <SheetContent
               side="right"
               className="border-zinc-800 bg-[#0b0c10] text-white"
