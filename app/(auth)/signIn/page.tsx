@@ -2,16 +2,24 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { authClient } from "@/lib/auth-client"
 
 export default function SignInPage() {
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit =async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     
     const formData = new FormData(e.currentTarget)
-    const data = Object.fromEntries(formData.entries())
-    
-    console.log(data)
+    const users = Object.fromEntries(formData.entries())as {email:string,password:string}
+
+    const {data ,error} = await authClient.signIn.email({
+      email:users.email,
+      password:users.password,
+        callbackURL: "/",
+    })
+    if(data ){
+      console.log("Succecfull to Sign IN",data)
+    }
   }
 
   return (

@@ -17,7 +17,9 @@ const { data, error } = await authClient.signUp.email({
         name:users.name ,// user display name
         callbackURL: "/dashboard" // A URL to redirect to after the user verifies their email (optional)
     })
-    console.log(data)
+    if(data){
+      console.log("Sign Up succecfull",data)
+    }
 }
 
   return (
