@@ -12,6 +12,7 @@ import {
   ArrowRight 
 } from "lucide-react"
 import { JobsPost } from "@/lib/actions/JobsPost"
+import toast from "react-hot-toast"
 
 // টাইপ ডিফিনিশন
 export interface JobsFormData {
@@ -57,17 +58,15 @@ export default function PostNewJobPage() {
       qualifications: formData.get("qualifications") as string,
     }
 
-    try {
       // JobsPost ফাংশনে ডেটা পাঠানো
       const result = await JobsPost(jobsData)
-      console.log("Job posted successfully:", result)
+      if(result){
+        console.log("Job posted successfully:", result)
+        toast.success("Job posted successfully!")
 
-      setTimeout(() => {
-        setLoading(false)
-        router.push("/dashboard/recruiter/jobs") 
-      }, 1000)
-    } catch (error) {
-      console.error("Failed to submit job:", error)
+        router.push('/dashboard/recruiter/jobs')
+      }else{
+      toast.error("Failed to post job. Please try again.")
       setLoading(false)
     }
   }
@@ -278,7 +277,7 @@ export default function PostNewJobPage() {
                 name="qualifications"
                 rows={4}
                 placeholder="• 3+ years of experience..."
-                className="w-full bg-zinc-900/60 border border-zinc-800 text-white text-sm rounded-xl p-3 focus:outline-none focus:border-indigo-500 resize-none font-mono text-xs"
+                className="w-full bg-zinc-900/60 border border-zinc-800 text-white text-xs rounded-xl p-3 focus:outline-none focus:border-indigo-500 resize-none font-mono text-xs"
               />
             </div>
           </div>

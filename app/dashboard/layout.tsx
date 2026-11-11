@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { DashboardSideBar } from "../component/DashboardSideBar"
+import { Toaster } from "react-hot-toast"
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -20,6 +21,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="flex-1 p-4 sm:p-6 md:p-8 w-full max-w-7xl mx-auto">
             {children}
           </div>
+          <Toaster 
+          position="top-right" 
+          toastOptions={{
+            style: {
+              background: '#18181b',
+              color: '#fff',
+              border: '1 border-zinc-800',
+            },
+          }} 
+        />
         </main>
         
       </div>

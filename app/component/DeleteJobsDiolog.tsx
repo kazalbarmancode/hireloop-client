@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { deletePost } from "@/lib/actions/JobsPost"
-
+import toast from "react-hot-toast"
 // প্রপসের ইন্টারফেস ডিফাইন করা
 interface JobItem {
   _id?: string
@@ -33,10 +33,10 @@ export function DeleteJobsDiolog({ job }: { job: JobItem }) {
     try {
       setLoading(true)
      const res= await deletePost(job._id)
-      console.log(job._id,res)
+     toast.success("Job deleted successfully!") 
       router.refresh() // পেজ ডেটা রিফ্রেশ করার জন্য
     } catch (error) {
-      console.error("Failed to delete job:", error)
+      toast.error("Failed to delete job. Please try again.")
     } finally {
       setLoading(false)
     }
