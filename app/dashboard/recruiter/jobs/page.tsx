@@ -9,8 +9,8 @@ import {
   Trash2, 
   Globe 
 } from "lucide-react"
-import { getJobs } from "@/lib/api/Jobs"
 import { DeleteJobsDiolog } from "@/app/component/DeleteJobsDiolog"
+import { getJobs } from "@/lib/api/Jobs"
 
 export interface Job {
   _id?: string
@@ -30,7 +30,7 @@ export interface Job {
 
 export default async function ManageJobsPage() {
   // ডাটা ফেচ করা (ধরে নিচ্ছি এটি একটি অ্যারে রিটার্ন করে)
-  const result: Job[] = await getJobs()
+  const result: Job[] = await getJobs({ query: "" })
   const loading = false // Server Component-এ চাইলে রিমूव করতে পারেন বা প্রপস থেকে হ্যান্ডেল করতে পারেন
 
   return (
