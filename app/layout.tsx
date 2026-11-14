@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toast";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
         
           <Navbar />
           {children}
+          <Toaster /> {/* 👈 একদম body-র শুরুতে বা শেষে রাখুন */}
       </body>
     </html>
   );

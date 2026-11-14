@@ -33,7 +33,6 @@ export default function BrowseJobsPage() {
   const [jobs, setJobs] = useState<Job[]>([])
   const [loading, setLoading] = useState(true)
 
-  // ব্যাকএন্ড থেকে কুয়েরি অনুযায়ী ডেটা ফেচ করা
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -58,7 +57,6 @@ export default function BrowseJobsPage() {
     fetchJobs()
   }, [searchParams])
 
-  // সার্চ সাবমিট হ্যান্ডলার
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     const params = new URLSearchParams(searchParams.toString())
@@ -76,7 +74,7 @@ export default function BrowseJobsPage() {
     <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-10">
       <div className="max-w-7xl mx-auto space-y-8">
         
-        {/* Top Search Bar Section */}
+        {/* Top Search Bar */}
         <form onSubmit={handleSearchSubmit} className="bg-zinc-950 p-4 sm:p-6 rounded-2xl border border-zinc-900 flex flex-col md:flex-row gap-3 shadow-xl">
           <div className="relative flex-1">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
@@ -93,22 +91,19 @@ export default function BrowseJobsPage() {
           </Button>
         </form>
 
-        {/* Main Content Layout */}
+        {/* Main Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
-          {/* Left Sidebar Filters */}
+          {/* Sidebar Filters */}
           <aside className="lg:col-span-1 space-y-6 bg-zinc-950/60 p-5 rounded-2xl border border-zinc-900 h-fit">
             <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
               <h2 className="font-semibold text-base">Filters</h2>
-              <Link 
-                href="/browsJobs"
-                className="text-xs text-indigo-400 hover:underline cursor-pointer"
-              >
+              <Link href="/browsJobs" className="text-xs text-indigo-400 hover:underline cursor-pointer">
                 Reset All
               </Link>
             </div>
 
-            {/* Workplace Type / isRemote Filter */}
+            {/* Workplace Type */}
             <div className="space-y-3">
               <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Workplace Type</h3>
               <div className="space-y-2 text-sm">
@@ -141,7 +136,7 @@ export default function BrowseJobsPage() {
               </div>
             </div>
 
-            {/* Job Type Filter */}
+            {/* Job Type */}
             <div className="space-y-3 pt-4 border-t border-zinc-900">
               <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Job Type</h3>
               <div className="space-y-2 text-sm">
@@ -171,7 +166,7 @@ export default function BrowseJobsPage() {
               </div>
             </div>
 
-            {/* Category Filter */}
+            {/* Category */}
             <div className="space-y-3 pt-4 border-t border-zinc-900">
               <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">Category</h3>
               <div className="space-y-2 text-sm">
@@ -202,7 +197,7 @@ export default function BrowseJobsPage() {
             </div>
           </aside>
 
-          {/* Right Job Listings */}
+          {/* Job Listings */}
           <main className="lg:col-span-3 space-y-4">
             <div className="flex items-center justify-between">
               <p className="text-sm text-zinc-400">
@@ -218,7 +213,6 @@ export default function BrowseJobsPage() {
               </div>
             ) : (
               jobs.map((job, index) => (
-                // প্রতিটি জব কার্ডকে Link দিয়ে মুড়ে দেওয়া হলো যাতে ক্লিক করলেই ডিটেইলস পেজে যায়
                 <Link 
                   key={job._id || index} 
                   href={`/browsJobs/${job._id}`}
@@ -249,7 +243,7 @@ export default function BrowseJobsPage() {
                     </div>
 
                     <button 
-                      onClick={(e) => { e.preventDefault(); /* Bookmark logic here */ }} 
+                      onClick={(e) => { e.preventDefault(); }} 
                       className="text-zinc-500 hover:text-white p-2 rounded-lg hover:bg-zinc-900 transition-colors cursor-pointer"
                     >
                       <Bookmark className="w-5 h-5" />

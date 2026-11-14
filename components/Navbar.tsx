@@ -19,7 +19,7 @@ export default function Navbar() {
   const rolePath = session?.user?.role ? `/dashboard/${session.user.role}` : "/dashboard"
 
   const navLinks = [
-    { label: "Browse Jobs", href: "/jobs" },
+    { label: "Browse Jobs", href: "/browsJobs" },
     { label: "Company", href: "/company" },
     { label: "Pricing", href: "/pricing" },
     { label: "Dashboard", href: rolePath },
